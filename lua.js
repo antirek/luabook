@@ -1,17 +1,17 @@
 function spoiler(a) {
     if (a.parentNode.getElementsByTagName("div")[0].style.display != "") {
     a.parentNode.getElementsByTagName("div")[0].style.display = "";
-    a.innerText = "       скрыть";
+    a.innerText = "       СЃРєСЂС‹С‚СЊ";
     }
 else {
     a.parentNode.getElementsByTagName("div")[0].style.display = "none";
-    a.innerText = "... читать далее";
+    a.innerText = "... С‡РёС‚Р°С‚СЊ РґР°Р»РµРµ";
     }
     }
 
 function onlyClick(num) {
    var ref = document.getElementById("link_"+num);
-   ref.innerText = "    вернуться";
+   ref.innerText = "    РІРµСЂРЅСѓС‚СЊСЃСЏ";
    ref.style.display = "block";
    ref.parentNode.getElementsByTagName("div")[0].style.display = "";
    ref.parentNode.getElementsByTagName("a")[0].style.display = "none";

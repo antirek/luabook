@@ -9,292 +9,292 @@
 </object>
 
 <li><object type="text/sitemap">
-	<param name="Name" value="Lua 5.3 Ðóêîâîäñòâî ïîëüçîâàòåëÿ">
+	<param name="Name" value="Lua 5.3 Ð ÑƒÐºÐ¾Ð²Ð¾Ð´ÑÑ‚Ð²Ð¾ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ">
 	<param name="Local" value="overview.htm">
 </object>
 <ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="Ïðåäìåòíûé óêàçàòåëü">
+    <param name="Name" value="ÐŸÑ€ÐµÐ´Ð¼ÐµÑ‚Ð½Ñ‹Ð¹ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ">
     <param name="Local" value="index.htm">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="1. Ââåäåíèå">
+    <param name="Name" value="1. Ð’Ð²ÐµÐ´ÐµÐ½Ð¸Ðµ">
     <param name="Local" value="introduction.htm">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="2. Áàçîâûå ïîíÿòèÿ">
+    <param name="Name" value="2. Ð‘Ð°Ð·Ð¾Ð²Ñ‹Ðµ Ð¿Ð¾Ð½ÑÑ‚Ð¸Ñ">
     <param name="Local" value="basicConcepts.htm">
   </object>
 <ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="2.1 Çíà÷åíèÿ è òèïû">
+    <param name="Name" value="2.1 Ð—Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð¸ Ñ‚Ð¸Ð¿Ñ‹">
     <param name="Local" value="basicConcepts.htm#2.1">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="2.2 Îêðóæåíèå è ãëîáàëüíàÿ ñðåäà">
+    <param name="Name" value="2.2 ÐžÐºÑ€ÑƒÐ¶ÐµÐ½Ð¸Ðµ Ð¸ Ð³Ð»Ð¾Ð±Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ€ÐµÐ´Ð°">
     <param name="Local" value="basicConcepts.htm#2.2">
   </object>
     <li><object type="text/sitemap">
-    <param name="Name" value="2.3 Îáðàáîòêà îøèáîê">
+    <param name="Name" value="2.3 ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° Ð¾ÑˆÐ¸Ð±Ð¾Ðº">
     <param name="Local" value="basicConcepts.htm#2.3">
   </object>
     <li><object type="text/sitemap">
-    <param name="Name" value="2.4 Ìåòàòàáëèöû è ìåòàìåòîäû">
+    <param name="Name" value="2.4 ÐœÐµÑ‚Ð°Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹ Ð¸ Ð¼ÐµÑ‚Ð°Ð¼ÐµÑ‚Ð¾Ð´Ñ‹">
     <param name="Local" value="basicConcepts.htm#2.4">
   </object>
     <li><object type="text/sitemap">
-    <param name="Name" value="2.5 Ñáîðêà ìóñîðà">
+    <param name="Name" value="2.5 Ð¡Ð±Ð¾Ñ€ÐºÐ° Ð¼ÑƒÑÐ¾Ñ€Ð°">
     <param name="Local" value="basicConcepts.htm#2.5">
   </object>
 <ul>
     <li><object type="text/sitemap">
-    <param name="Name" value="2.5.1 Ìåòàìåòîäû ñáîðùèêà ìóñîðà">
+    <param name="Name" value="2.5.1 ÐœÐµÑ‚Ð°Ð¼ÐµÑ‚Ð¾Ð´Ñ‹ ÑÐ±Ð¾Ñ€Ñ‰Ð¸ÐºÐ° Ð¼ÑƒÑÐ¾Ñ€Ð°">
     <param name="Local" value="basicConcepts.htm#2.5.1">
   </object>
     <li><object type="text/sitemap">
-    <param name="Name" value="2.5.2 Ñëàáûå òàáëèöû">
+    <param name="Name" value="2.5.2 Ð¡Ð»Ð°Ð±Ñ‹Ðµ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹">
     <param name="Local" value="basicConcepts.htm#2.5.2">
   </object>
 </ul>
     <li><object type="text/sitemap">
-    <param name="Name" value="2.6 Ñîïðîãðàììû">
+    <param name="Name" value="2.6 Ð¡Ð¾Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹">
     <param name="Local" value="basicConcepts.htm#2.6">
   </object>
 </ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="3. Îïèñàíèå ÿçûêà">
+    <param name="Name" value="3. ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ ÑÐ·Ñ‹ÐºÐ°">
     <param name="Local" value="language.htm">
   </object>
 <ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.1 Ëåêñè÷åñêèå ñîãëàøåíèÿ">
+    <param name="Name" value="3.1 Ð›ÐµÐºÑÐ¸Ñ‡ÐµÑÐºÐ¸Ðµ ÑÐ¾Ð³Ð»Ð°ÑˆÐµÐ½Ð¸Ñ">
     <param name="Local" value="language.htm#3.1">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.2 Ïåðåìåííûå">
+    <param name="Name" value="3.2 ÐŸÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ðµ">
     <param name="Local" value="language.htm#3.2">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.3 Îïåðàòîðû">
+    <param name="Name" value="3.3 ÐžÐ¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ñ‹">
     <param name="Local" value="language.htm#3.3">
   </object>
 <ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.3.1 Áëîêè">
+    <param name="Name" value="3.3.1 Ð‘Ð»Ð¾ÐºÐ¸">
     <param name="Local" value="language.htm#3.3.1">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.3.2 Ïîðöèè">
+    <param name="Name" value="3.3.2 ÐŸÐ¾Ñ€Ñ†Ð¸Ð¸">
     <param name="Local" value="language.htm#3.3.2">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.3.3 Ïðèñâàèâàíèå">
+    <param name="Name" value="3.3.3 ÐŸÑ€Ð¸ÑÐ²Ð°Ð¸Ð²Ð°Ð½Ð¸Ðµ">
     <param name="Local" value="language.htm#3.3.3">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.3.4 Óïðàâëÿþùèå ñòðóêòóðû">
+    <param name="Name" value="3.3.4 Ð£Ð¿Ñ€Ð°Ð²Ð»ÑÑŽÑ‰Ð¸Ðµ ÑÑ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ñ‹">
     <param name="Local" value="language.htm#3.3.4">
   </object>
     <li><object type="text/sitemap">
-    <param name="Name" value="3.3.5 Îïåðàòîð for">
+    <param name="Name" value="3.3.5 ÐžÐ¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ for">
     <param name="Local" value="language.htm#3.3.5">
   </object>
     <li><object type="text/sitemap">
-    <param name="Name" value="3.3.6 Âûçîâû ôóíêöèé êàê îïåðàòîðû">
+    <param name="Name" value="3.3.6 Ð’Ñ‹Ð·Ð¾Ð²Ñ‹ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¹ ÐºÐ°Ðº Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ñ‹">
     <param name="Local" value="language.htm#3.3.6">
   </object>
     <li><object type="text/sitemap">
-    <param name="Name" value="3.3.7 Ëîêàëüíûå îáúÿâëåíèÿ">
+    <param name="Name" value="3.3.7 Ð›Ð¾ÐºÐ°Ð»ÑŒÐ½Ñ‹Ðµ Ð¾Ð±ÑŠÑÐ²Ð»ÐµÐ½Ð¸Ñ">
     <param name="Local" value="language.htm#3.3.7">
   </object>
 </ul>
     <li><object type="text/sitemap">
-    <param name="Name" value="3.4 Âûðàæåíèÿ">
+    <param name="Name" value="3.4 Ð’Ñ‹Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ">
     <param name="Local" value="language.htm#3.4">
   </object>
 <ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.4.1 Àðèôìåòè÷åñêèå îïåðàòîðû">
+    <param name="Name" value="3.4.1 ÐÑ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ðµ Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ñ‹">
     <param name="Local" value="language.htm#3.4.1">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.4.2 Ïîáèòîâûå îïåðàòîðû">
+    <param name="Name" value="3.4.2 ÐŸÐ¾Ð±Ð¸Ñ‚Ð¾Ð²Ñ‹Ðµ Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ñ‹">
     <param name="Local" value="language.htm#3.4.2">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.4.3 Ïðèâåäåíèå è ïðåîáðàçîâàíèå">
+    <param name="Name" value="3.4.3 ÐŸÑ€Ð¸Ð²ÐµÐ´ÐµÐ½Ð¸Ðµ Ð¸ Ð¿Ñ€ÐµÐ¾Ð±Ñ€Ð°Ð·Ð¾Ð²Ð°Ð½Ð¸Ðµ">
     <param name="Local" value="language.htm#3.4.3">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.4.4 Îïåðàòîðû ñðàâíåíèÿ">
+    <param name="Name" value="3.4.4 ÐžÐ¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ">
     <param name="Local" value="language.htm#3.4.4">
   </object>  
   <li><object type="text/sitemap">
-    <param name="Name" value="3.4.5 Ëîãè÷åñêèå îïåðàòîðû">
+    <param name="Name" value="3.4.5 Ð›Ð¾Ð³Ð¸Ñ‡ÐµÑÐºÐ¸Ðµ Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ñ‹">
     <param name="Local" value="language.htm#3.4.5">
   </object>
     <li><object type="text/sitemap">
-    <param name="Name" value="3.4.6 Êîíêàòåíàöèÿ">
+    <param name="Name" value="3.4.6 ÐšÐ¾Ð½ÐºÐ°Ñ‚ÐµÐ½Ð°Ñ†Ð¸Ñ">
     <param name="Local" value="language.htm#3.4.6">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.4.7 Îïåðàòîð äëèíû">
+    <param name="Name" value="3.4.7 ÐžÐ¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ Ð´Ð»Ð¸Ð½Ñ‹">
     <param name="Local" value="language.htm#3.4.7">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.4.8 Ïðèîðèòåò">
+    <param name="Name" value="3.4.8 ÐŸÑ€Ð¸Ð¾Ñ€Ð¸Ñ‚ÐµÑ‚">
     <param name="Local" value="language.htm#3.4.8">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.4.9 Êîíñòðóêòîðû òàáëèö">
+    <param name="Name" value="3.4.9 ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€Ñ‹ Ñ‚Ð°Ð±Ð»Ð¸Ñ†">
     <param name="Local" value="language.htm#3.4.9">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.4.10 Âûçîâû ôóíêöèé">
+    <param name="Name" value="3.4.10 Ð’Ñ‹Ð·Ð¾Ð²Ñ‹ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¹">
     <param name="Local" value="language.htm#3.4.10">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.4.11 Îïðåäåëåíèÿ ôóíêöèé">
+    <param name="Name" value="3.4.11 ÐžÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¹">
     <param name="Local" value="language.htm#3.4.11">
   </object>
 </ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="3.5 Ïðàâèëà âèäèìîñòè">
+    <param name="Name" value="3.5 ÐŸÑ€Ð°Ð²Ð¸Ð»Ð° Ð²Ð¸Ð´Ð¸Ð¼Ð¾ÑÑ‚Ð¸">
     <param name="Local" value="language.htm#3.5">
   </object>
 </ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="4. Èíòåðôåéñ ïðèêëàäíîãî ïðîãðàììèðîâàíèÿ (API)">
+    <param name="Name" value="4. Ð˜Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹Ñ Ð¿Ñ€Ð¸ÐºÐ»Ð°Ð´Ð½Ð¾Ð³Ð¾ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ (API)">
     <param name="Local" value="api.htm">
   </object>
 <ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="4.1 Ñòåê">
+    <param name="Name" value="4.1 Ð¡Ñ‚ÐµÐº">
     <param name="Local" value="api.htm#4.1">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="4.2 Ðàçìåð ñòåêà">
+    <param name="Name" value="4.2 Ð Ð°Ð·Ð¼ÐµÑ€ ÑÑ‚ÐµÐºÐ°">
     <param name="Local" value="api.htm#4.2">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="4.3 Äåéñòâèòåëüíûå è äîïóñòèìûå èíäåêñû">
+    <param name="Name" value="4.3 Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ð¸ Ð´Ð¾Ð¿ÑƒÑÑ‚Ð¸Ð¼Ñ‹Ðµ Ð¸Ð½Ð´ÐµÐºÑÑ‹">
     <param name="Local" value="api.htm#4.3">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="4.4 Çàìûêàíèÿ â Ñ">
+    <param name="Name" value="4.4 Ð—Ð°Ð¼Ñ‹ÐºÐ°Ð½Ð¸Ñ Ð² Ð¡">
     <param name="Local" value="api.htm#4.4">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="4.5 Ðååñòð">
+    <param name="Name" value="4.5 Ð ÐµÐµÑÑ‚Ñ€">
     <param name="Local" value="api.htm#4.5">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="4.6 Îáðàáîòêà îøèáîê â Ñ">
+    <param name="Name" value="4.6 ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° Ð¾ÑˆÐ¸Ð±Ð¾Ðº Ð² Ð¡">
     <param name="Local" value="api.htm#4.6">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="4.7 Îáðàáîòêà ïðèîñòàíîâîê âûïîëíåíèÿ â C">
+    <param name="Name" value="4.7 ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° Ð¿Ñ€Ð¸Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²Ð¾Ðº Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ð² C">
     <param name="Local" value="api.htm#4.7">
   </object>  
   <li><object type="text/sitemap">
-    <param name="Name" value="4.8 Ôóíêöèè è òèïû">
+    <param name="Name" value="4.8 Ð¤ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð¸ Ñ‚Ð¸Ð¿Ñ‹">
     <param name="Local" value="api.htm#4.8">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="4.9 Èíòåðôåéñ îòëàäêè">
+    <param name="Name" value="4.9 Ð˜Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹Ñ Ð¾Ñ‚Ð»Ð°Ð´ÐºÐ¸">
     <param name="Local" value="api.htm#4.9">
   </object>
 </ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="5. Âñïîìîãàòåëüíàÿ áèáëèîòåêà">
+    <param name="Name" value="5. Ð’ÑÐ¿Ð¾Ð¼Ð¾Ð³Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð°Ñ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ°">
     <param name="Local" value="auxLibrary.htm">
   </object>
 <ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="5.1 Ôóíêöèè è òèïû">
+    <param name="Name" value="5.1 Ð¤ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð¸ Ñ‚Ð¸Ð¿Ñ‹">
     <param name="Local" value="auxLibrary.htm#5.1">
   </object>    
 </ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="6. Ñòàíäàðòíûå áèáëèîòåêè">
+    <param name="Name" value="6. Ð¡Ñ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ñ‹Ðµ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸">
     <param name="Local" value="standardLibraries.htm">
   </object>
 <ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.1 Áàçîâûå ôóíêöèè">
+    <param name="Name" value="6.1 Ð‘Ð°Ð·Ð¾Ð²Ñ‹Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸">
     <param name="Local" value="standardLibraries.htm#6.1">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.2 Îáðàáîòêà ñîïðîãðàìì">
+    <param name="Name" value="6.2 ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° ÑÐ¾Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼">
     <param name="Local" value="standardLibraries.htm#6.2">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.3 Ìîäóëè">
+    <param name="Name" value="6.3 ÐœÐ¾Ð´ÑƒÐ»Ð¸">
     <param name="Local" value="standardLibraries.htm#6.3">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.4 Îáðàáîòêà ñòðîê">
+    <param name="Name" value="6.4 ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº">
     <param name="Local" value="standardLibraries.htm#6.4">
   </object>
 <ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.4.1 Øàáëîíû">
+    <param name="Name" value="6.4.1 Ð¨Ð°Ð±Ð»Ð¾Ð½Ñ‹">
     <param name="Local" value="standardLibraries.htm#6.4.1">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.4.2 Ñòðîêè ôîðìàòà äëÿ óïàêîâêè è ðàñïàêîâêè">
+    <param name="Name" value="6.4.2 Ð¡Ñ‚Ñ€Ð¾ÐºÐ¸ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ð° Ð´Ð»Ñ ÑƒÐ¿Ð°ÐºÐ¾Ð²ÐºÐ¸ Ð¸ Ñ€Ð°ÑÐ¿Ð°ÐºÐ¾Ð²ÐºÐ¸">
     <param name="Local" value="standardLibraries.htm#6.4.2">
   </object>
 </ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.5 Ïîääåðæêà UTF-8">
+    <param name="Name" value="6.5 ÐŸÐ¾Ð´Ð´ÐµÑ€Ð¶ÐºÐ° UTF-8">
     <param name="Local" value="standardLibraries.htm#6.5">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.6 Îáðàáîòêà òàáëèö">
+    <param name="Name" value="6.6 ÐžÐ±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° Ñ‚Ð°Ð±Ð»Ð¸Ñ†">
     <param name="Local" value="standardLibraries.htm#6.6">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.7 Ìàòåìàòè÷åñêèå ôóíêöèè">
+    <param name="Name" value="6.7 ÐœÐ°Ñ‚ÐµÐ¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸">
     <param name="Local" value="standardLibraries.htm#6.7">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.8 Ñðåäñòâà ââîäà/âûâîäà">
+    <param name="Name" value="6.8 Ð¡Ñ€ÐµÐ´ÑÑ‚Ð²Ð° Ð²Ð²Ð¾Ð´Ð°/Ð²Ñ‹Ð²Ð¾Ð´Ð°">
     <param name="Local" value="standardLibraries.htm#6.8">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.9 Âîçìîæíîñòè îïåðàöèîííîé ñèñòåìû">
+    <param name="Name" value="6.9 Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑ‚Ð¸ Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹">
     <param name="Local" value="standardLibraries.htm#6.9">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="6.10 Áèáëèîòåêà îòëàäêè">
+    <param name="Name" value="6.10 Ð‘Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ° Ð¾Ñ‚Ð»Ð°Ð´ÐºÐ¸">
     <param name="Local" value="standardLibraries.htm#6.10">
   </object>
 </ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="7. Àâòîíîìíûé Lua">
+    <param name="Name" value="7. ÐÐ²Ñ‚Ð¾Ð½Ð¾Ð¼Ð½Ñ‹Ð¹ Lua">
     <param name="Local" value="luaStandalone.htm">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="8. Íåñîâìåñòèìîñòü ñ ïðåäûäóùåé âåðñèåé">
+    <param name="Name" value="8. ÐÐµÑÐ¾Ð²Ð¼ÐµÑÑ‚Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ñ Ð¿Ñ€ÐµÐ´Ñ‹Ð´ÑƒÑ‰ÐµÐ¹ Ð²ÐµÑ€ÑÐ¸ÐµÐ¹">
     <param name="Local" value="incompatibility.htm">
   </object>
 <ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="8.1 Èçìåíåíèÿ â ÿçûêå">
+    <param name="Name" value="8.1 Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ Ð² ÑÐ·Ñ‹ÐºÐµ">
     <param name="Local" value="incompatibility.htm#8.1">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="8.2 Èçìåíåíèÿ â áèáëèîòåêàõ">
+    <param name="Name" value="8.2 Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ Ð² Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ°Ñ…">
     <param name="Local" value="incompatibility.htm#8.2">
   </object>
   <li><object type="text/sitemap">
-    <param name="Name" value="8.3 Èçìåíåíèÿ â API">
+    <param name="Name" value="8.3 Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ Ð² API">
     <param name="Local" value="incompatibility.htm#8.3">
   </object>
 </ul>
   <li><object type="text/sitemap">
-    <param name="Name" value="9. Ïîëíûé ñèíòàêñèñ Lua">
+    <param name="Name" value="9. ÐŸÐ¾Ð»Ð½Ñ‹Ð¹ ÑÐ¸Ð½Ñ‚Ð°ÐºÑÐ¸Ñ Lua">
     <param name="Local" value="completeSyntax.htm">
   </object>
 </ul>

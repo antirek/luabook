@@ -1,22 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head>
-<title>Lua 5.3 Справочное руководство</title>
+<title>Lua 5.3 РЎРїСЂР°РІРѕС‡РЅРѕРµ СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ</title>
 <meta http-equiv="content-type" content="text/html; charset=windows-1251">
 <link rel="stylesheet" type="text/css" href="lua.css">
 <object id=hhctrl classid="clsid:ADB880A6-D8FF-11CF-9377-00AA003B7A11" width=0 height=0 vspace=0 hspace=0 border=0 type="application/x-oleobject"></object>
 </head>
 <body>
-<h1>9 – Полный синтаксис Lua</h1>
-Здесь дан полный синтаксис Lua в <a href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F_%D1%84%D0%BE%D1%80%D0%BC%D0%B0_%D0%91%D1%8D%D0%BA%D1%83%D1%81%D0%B0_%E2%80%94_%D0%9D%D0%B0%D1%83%D1%80%D0%B0" target=_blank>расширенной форме Бэкуса — Наура (extended BNF)</a>.
-Как обычно в расширенной BNF, {A} означает ноль или более элементов A (повторение), а [A] означает дополнительный, необязательный элемент A.
-(Описание приоритета операторов смотрите в <a href="language.htm#3.4.8">§3.4.8</a>; а описание <a class=popupspot href="JavaScript:hhctrl.TextPopup('Терминалы (терминальные символы) — это минимальные элементы грамматики, не имеющие собственной грамматической структуры.\r\nВ расширенной BNF терминалы — это либо предопределённые идентификаторы (имена, считающиеся заданными для данного описания грамматики), либо цепочки — последовательности символов в кавычках или апострофах.','Arial,9',10,10,0xffffff,0xd69967)">терминалов</a> Name, Numeral, и LiteralString, смотрите <a href="language.htm#3.1">§3.1</a>.)
+<h1>9 вЂ“ РџРѕР»РЅС‹Р№ СЃРёРЅС‚Р°РєСЃРёСЃ Lua</h1>
+Р—РґРµСЃСЊ РґР°РЅ РїРѕР»РЅС‹Р№ СЃРёРЅС‚Р°РєСЃРёСЃ Lua РІ <a href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F_%D1%84%D0%BE%D1%80%D0%BC%D0%B0_%D0%91%D1%8D%D0%BA%D1%83%D1%81%D0%B0_%E2%80%94_%D0%9D%D0%B0%D1%83%D1%80%D0%B0" target=_blank>СЂР°СЃС€РёСЂРµРЅРЅРѕР№ С„РѕСЂРјРµ Р‘СЌРєСѓСЃР° вЂ” РќР°СѓСЂР° (extended BNF)</a>.
+РљР°Рє РѕР±С‹С‡РЅРѕ РІ СЂР°СЃС€РёСЂРµРЅРЅРѕР№ BNF, {A} РѕР·РЅР°С‡Р°РµС‚ РЅРѕР»СЊ РёР»Рё Р±РѕР»РµРµ СЌР»РµРјРµРЅС‚РѕРІ A (РїРѕРІС‚РѕСЂРµРЅРёРµ), Р° [A] РѕР·РЅР°С‡Р°РµС‚ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№, РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ A.
+(РћРїРёСЃР°РЅРёРµ РїСЂРёРѕСЂРёС‚РµС‚Р° РѕРїРµСЂР°С‚РѕСЂРѕРІ СЃРјРѕС‚СЂРёС‚Рµ РІ <a href="language.htm#3.4.8">В§3.4.8</a>; Р° РѕРїРёСЃР°РЅРёРµ <a class=popupspot href="JavaScript:hhctrl.TextPopup('РўРµСЂРјРёРЅР°Р»С‹ (С‚РµСЂРјРёРЅР°Р»СЊРЅС‹Рµ СЃРёРјРІРѕР»С‹) вЂ” СЌС‚Рѕ РјРёРЅРёРјР°Р»СЊРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РіСЂР°РјРјР°С‚РёРєРё, РЅРµ РёРјРµСЋС‰РёРµ СЃРѕР±СЃС‚РІРµРЅРЅРѕР№ РіСЂР°РјРјР°С‚РёС‡РµСЃРєРѕР№ СЃС‚СЂСѓРєС‚СѓСЂС‹.\r\nР’ СЂР°СЃС€РёСЂРµРЅРЅРѕР№ BNF С‚РµСЂРјРёРЅР°Р»С‹ вЂ” СЌС‚Рѕ Р»РёР±Рѕ РїСЂРµРґРѕРїСЂРµРґРµР»С‘РЅРЅС‹Рµ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂС‹ (РёРјРµРЅР°, СЃС‡РёС‚Р°СЋС‰РёРµСЃСЏ Р·Р°РґР°РЅРЅС‹РјРё РґР»СЏ РґР°РЅРЅРѕРіРѕ РѕРїРёСЃР°РЅРёСЏ РіСЂР°РјРјР°С‚РёРєРё), Р»РёР±Рѕ С†РµРїРѕС‡РєРё вЂ” РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё СЃРёРјРІРѕР»РѕРІ РІ РєР°РІС‹С‡РєР°С… РёР»Рё Р°РїРѕСЃС‚СЂРѕС„Р°С….','Arial,9',10,10,0xffffff,0xd69967)">С‚РµСЂРјРёРЅР°Р»РѕРІ</a> Name, Numeral, Рё LiteralString, СЃРјРѕС‚СЂРёС‚Рµ <a href="language.htm#3.1">В§3.1</a>.)
 <pre>
 	chunk ::= block
 
 	block ::= {stat} [retstat]
 
-	stat ::=  ‘<b>;</b>’ |
-		 varlist ‘<b>=</b>’ explist |
+	stat ::=  вЂ<b>;</b>вЂ™ |
+		 varlist вЂ<b>=</b>вЂ™ explist |
 		 functioncall |
 		 label |
 		 <b>break</b> |
@@ -25,55 +25,55 @@
 		 <b>while</b> exp <b>do</b> block <b>end</b> |
 		 <b>repeat</b> block <b>until</b> exp |
 		 <b>if</b> exp <b>then</b> block {<b>elseif</b> exp <b>then</b> block} [<b>else</b> block] <b>end</b> |
-		 <b>for</b> Name ‘<b>=</b>’ exp ‘<b>,</b>’ exp [‘<b>,</b>’ exp] <b>do</b> block <b>end</b> |
+		 <b>for</b> Name вЂ<b>=</b>вЂ™ exp вЂ<b>,</b>вЂ™ exp [вЂ<b>,</b>вЂ™ exp] <b>do</b> block <b>end</b> |
 		 <b>for</b> namelist <b>in</b> explist <b>do</b> block <b>end</b> |
 		 <b>function</b> funcname funcbody |
 		 <b>local</b> <b>function</b> Name funcbody |
-		 <b>local</b> namelist [‘<b>=</b>’ explist]
+		 <b>local</b> namelist [вЂ<b>=</b>вЂ™ explist]
 
-	retstat ::= <b>return</b> [explist] [‘<b>;</b>’]
+	retstat ::= <b>return</b> [explist] [вЂ<b>;</b>вЂ™]
 
-	label ::= ‘<b>::</b>’ Name ‘<b>::</b>’
+	label ::= вЂ<b>::</b>вЂ™ Name вЂ<b>::</b>вЂ™
 
-	funcname ::= Name {‘<b>.</b>’ Name} [‘<b>:</b>’ Name]
+	funcname ::= Name {вЂ<b>.</b>вЂ™ Name} [вЂ<b>:</b>вЂ™ Name]
 
-	varlist ::= var {‘<b>,</b>’ var}
+	varlist ::= var {вЂ<b>,</b>вЂ™ var}
 
-	var ::=  Name | prefixexp ‘<b>[</b>’ exp ‘<b>]</b>’ | prefixexp ‘<b>.</b>’ Name
+	var ::=  Name | prefixexp вЂ<b>[</b>вЂ™ exp вЂ<b>]</b>вЂ™ | prefixexp вЂ<b>.</b>вЂ™ Name
 
-	namelist ::= Name {‘<b>,</b>’ Name}
+	namelist ::= Name {вЂ<b>,</b>вЂ™ Name}
 
-	explist ::= exp {‘<b>,</b>’ exp}
+	explist ::= exp {вЂ<b>,</b>вЂ™ exp}
 
-	exp ::=  <b>nil</b> | <b>false</b> | <b>true</b> | Numeral | LiteralString | ‘<b>...</b>’ | functiondef |
+	exp ::=  <b>nil</b> | <b>false</b> | <b>true</b> | Numeral | LiteralString | вЂ<b>...</b>вЂ™ | functiondef |
 		 prefixexp | tableconstructor | exp binop exp | unop exp
 
-	prefixexp ::= var | functioncall | ‘<b>(</b>’ exp ‘<b>)</b>’
+	prefixexp ::= var | functioncall | вЂ<b>(</b>вЂ™ exp вЂ<b>)</b>вЂ™
 
-	functioncall ::=  prefixexp args | prefixexp ‘<b>:</b>’ Name args
+	functioncall ::=  prefixexp args | prefixexp вЂ<b>:</b>вЂ™ Name args
 
-	args ::=  ‘<b>(</b>’ [explist] ‘<b>)</b>’ | tableconstructor | LiteralString
+	args ::=  вЂ<b>(</b>вЂ™ [explist] вЂ<b>)</b>вЂ™ | tableconstructor | LiteralString
 
 	functiondef ::= <b>function</b> funcbody
 
-	funcbody ::= ‘<b>(</b>’ [parlist] ‘<b>)</b>’ block <b>end</b>
+	funcbody ::= вЂ<b>(</b>вЂ™ [parlist] вЂ<b>)</b>вЂ™ block <b>end</b>
 
-	parlist ::= namelist [‘<b>,</b>’ ‘<b>...</b>’] | ‘<b>...</b>’
+	parlist ::= namelist [вЂ<b>,</b>вЂ™ вЂ<b>...</b>вЂ™] | вЂ<b>...</b>вЂ™
 
-	tableconstructor ::= ‘<b>{</b>’ [fieldlist] ‘<b>}</b>’
+	tableconstructor ::= вЂ<b>{</b>вЂ™ [fieldlist] вЂ<b>}</b>вЂ™
 
 	fieldlist ::= field {fieldsep field} [fieldsep]
 
-	field ::= ‘<b>[</b>’ exp ‘<b>]</b>’ ‘<b>=</b>’ exp | Name ‘<b>=</b>’ exp | exp
+	field ::= вЂ<b>[</b>вЂ™ exp вЂ<b>]</b>вЂ™ вЂ<b>=</b>вЂ™ exp | Name вЂ<b>=</b>вЂ™ exp | exp
 
-	fieldsep ::= ‘<b>,</b>’ | ‘<b>;</b>’
+	fieldsep ::= вЂ<b>,</b>вЂ™ | вЂ<b>;</b>вЂ™
 
-	binop ::=  ‘<b>+</b>’ | ‘<b>-</b>’ | ‘<b>*</b>’ | ‘<b>/</b>’ | ‘<b>//</b>’ | ‘<b>^</b>’ | ‘<b>%</b>’ |
-		 ‘<b>&amp;</b>’ | ‘<b>~</b>’ | ‘<b>|</b>’ | ‘<b>&gt;&gt;</b>’ | ‘<b>&lt;&lt;</b>’ | ‘<b>..</b>’ |
-		 ‘<b>&lt;</b>’ | ‘<b>&lt;=</b>’ | ‘<b>&gt;</b>’ | ‘<b>&gt;=</b>’ | ‘<b>==</b>’ | ‘<b>~=</b>’ |
+	binop ::=  вЂ<b>+</b>вЂ™ | вЂ<b>-</b>вЂ™ | вЂ<b>*</b>вЂ™ | вЂ<b>/</b>вЂ™ | вЂ<b>//</b>вЂ™ | вЂ<b>^</b>вЂ™ | вЂ<b>%</b>вЂ™ |
+		 вЂ<b>&amp;</b>вЂ™ | вЂ<b>~</b>вЂ™ | вЂ<b>|</b>вЂ™ | вЂ<b>&gt;&gt;</b>вЂ™ | вЂ<b>&lt;&lt;</b>вЂ™ | вЂ<b>..</b>вЂ™ |
+		 вЂ<b>&lt;</b>вЂ™ | вЂ<b>&lt;=</b>вЂ™ | вЂ<b>&gt;</b>вЂ™ | вЂ<b>&gt;=</b>вЂ™ | вЂ<b>==</b>вЂ™ | вЂ<b>~=</b>вЂ™ |
 		 <b>and</b> | <b>or</b>
 
-	unop ::= ‘<b>-</b>’ | <b>not</b> | ‘<b>#</b>’ | ‘<b>~</b>’
+	unop ::= вЂ<b>-</b>вЂ™ | <b>not</b> | вЂ<b>#</b>вЂ™ | вЂ<b>~</b>вЂ™
 
 </pre>
 <br><br>
