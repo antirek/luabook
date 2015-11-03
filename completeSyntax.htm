@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<title>Lua 5.3 Справочное руководство</title>
+<meta http-equiv="content-type" content="text/html; charset=windows-1251">
+<link rel="stylesheet" type="text/css" href="lua.css">
+<object id=hhctrl classid="clsid:ADB880A6-D8FF-11CF-9377-00AA003B7A11" width=0 height=0 vspace=0 hspace=0 border=0 type="application/x-oleobject"></object>
+</head>
+<body>
+<h1>9 – Полный синтаксис Lua</h1>
+Здесь дан полный синтаксис Lua в <a href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F_%D1%84%D0%BE%D1%80%D0%BC%D0%B0_%D0%91%D1%8D%D0%BA%D1%83%D1%81%D0%B0_%E2%80%94_%D0%9D%D0%B0%D1%83%D1%80%D0%B0" target=_blank>расширенной форме Бэкуса — Наура (extended BNF)</a>.
+Как обычно в расширенной BNF, {A} означает ноль или более элементов A (повторение), а [A] означает дополнительный, необязательный элемент A.
+(Описание приоритета операторов смотрите в <a href="language.htm#3.4.8">§3.4.8</a>; а описание <a class=popupspot href="JavaScript:hhctrl.TextPopup('Терминалы (терминальные символы) — это минимальные элементы грамматики, не имеющие собственной грамматической структуры.\r\nВ расширенной BNF терминалы — это либо предопределённые идентификаторы (имена, считающиеся заданными для данного описания грамматики), либо цепочки — последовательности символов в кавычках или апострофах.','Arial,9',10,10,0xffffff,0xd69967)">терминалов</a> Name, Numeral, и LiteralString, смотрите <a href="language.htm#3.1">§3.1</a>.)
+<pre>
+	chunk ::= block
+
+	block ::= {stat} [retstat]
+
+	stat ::=  ‘<b>;</b>’ |
+		 varlist ‘<b>=</b>’ explist |
+		 functioncall |
+		 label |
+		 <b>break</b> |
+		 <b>goto</b> Name |
+		 <b>do</b> block <b>end</b> |
+		 <b>while</b> exp <b>do</b> block <b>end</b> |
+		 <b>repeat</b> block <b>until</b> exp |
+		 <b>if</b> exp <b>then</b> block {<b>elseif</b> exp <b>then</b> block} [<b>else</b> block] <b>end</b> |
+		 <b>for</b> Name ‘<b>=</b>’ exp ‘<b>,</b>’ exp [‘<b>,</b>’ exp] <b>do</b> block <b>end</b> |
+		 <b>for</b> namelist <b>in</b> explist <b>do</b> block <b>end</b> |
+		 <b>function</b> funcname funcbody |
+		 <b>local</b> <b>function</b> Name funcbody |
+		 <b>local</b> namelist [‘<b>=</b>’ explist]
+
+	retstat ::= <b>return</b> [explist] [‘<b>;</b>’]
+
+	label ::= ‘<b>::</b>’ Name ‘<b>::</b>’
+
+	funcname ::= Name {‘<b>.</b>’ Name} [‘<b>:</b>’ Name]
+
+	varlist ::= var {‘<b>,</b>’ var}
+
+	var ::=  Name | prefixexp ‘<b>[</b>’ exp ‘<b>]</b>’ | prefixexp ‘<b>.</b>’ Name
+
+	namelist ::= Name {‘<b>,</b>’ Name}
+
+	explist ::= exp {‘<b>,</b>’ exp}
+
+	exp ::=  <b>nil</b> | <b>false</b> | <b>true</b> | Numeral | LiteralString | ‘<b>...</b>’ | functiondef |
+		 prefixexp | tableconstructor | exp binop exp | unop exp
+
+	prefixexp ::= var | functioncall | ‘<b>(</b>’ exp ‘<b>)</b>’
+
+	functioncall ::=  prefixexp args | prefixexp ‘<b>:</b>’ Name args
+
+	args ::=  ‘<b>(</b>’ [explist] ‘<b>)</b>’ | tableconstructor | LiteralString
+
+	functiondef ::= <b>function</b> funcbody
+
+	funcbody ::= ‘<b>(</b>’ [parlist] ‘<b>)</b>’ block <b>end</b>
+
+	parlist ::= namelist [‘<b>,</b>’ ‘<b>...</b>’] | ‘<b>...</b>’
+
+	tableconstructor ::= ‘<b>{</b>’ [fieldlist] ‘<b>}</b>’
+
+	fieldlist ::= field {fieldsep field} [fieldsep]
+
+	field ::= ‘<b>[</b>’ exp ‘<b>]</b>’ ‘<b>=</b>’ exp | Name ‘<b>=</b>’ exp | exp
+
+	fieldsep ::= ‘<b>,</b>’ | ‘<b>;</b>’
+
+	binop ::=  ‘<b>+</b>’ | ‘<b>-</b>’ | ‘<b>*</b>’ | ‘<b>/</b>’ | ‘<b>//</b>’ | ‘<b>^</b>’ | ‘<b>%</b>’ |
+		 ‘<b>&amp;</b>’ | ‘<b>~</b>’ | ‘<b>|</b>’ | ‘<b>&gt;&gt;</b>’ | ‘<b>&lt;&lt;</b>’ | ‘<b>..</b>’ |
+		 ‘<b>&lt;</b>’ | ‘<b>&lt;=</b>’ | ‘<b>&gt;</b>’ | ‘<b>&gt;=</b>’ | ‘<b>==</b>’ | ‘<b>~=</b>’ |
+		 <b>and</b> | <b>or</b>
+
+	unop ::= ‘<b>-</b>’ | <b>not</b> | ‘<b>#</b>’ | ‘<b>~</b>’
+
+</pre>
+<br><br>
+</body></html>

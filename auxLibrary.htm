@@ -1,0 +1,481 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<title>Lua 5.3 Справочное руководство</title>
+<link rel="stylesheet" type="text/css" href="lua.css">
+<meta http-equiv="content-type" content="text/html; charset=windows-1251">
+<object id=hhctrl classid="clsid:ADB880A6-D8FF-11CF-9377-00AA003B7A11" width=0 height=0 vspace=0 hspace=0 border=0 type="application/x-oleobject"></object>
+</head>
+<body>
+<h1>5 – Вспомогательная библиотека</h1>
+<i>Вспомогательная библиотека</i> предоставляет несколько удобных функций для взаимодействия C с Lua.
+В то время как основной API предоставляет простые функции для всех отношений между C и Lua, вспомогательная библиотека обеспечивает высокоуровневые функции для части распространенных задач.<br><br>
+Все функции и виды из дополнительной библиотеки определены в заголовочном файле <tt>lauxlib.h</tt> и имеют префикс <tt>luaL_</tt>.<br><br>
+Все функции дополнительной библиотеки выстроены поверх основного API и, поэтому не дают ничего, что нельзя было сделать с помощью этого API. Тем не менее, использование вспомогательной библиотеки обеспечит вашему коду большую насыщенность.<br><br>
+Отдельные функции вспомогательной библиотеки внутри используют несколько дополнительных слотов стека.
+При использовании функцией вспомогательной библиотеки менее пяти слотов, она не проверяет размер стека; просто предполагается что имеется достаточно слотов.<br><br>
+Некоторые функции вспомогательной библиотеки используются для проверки аргументов функций на С.
+Поскольку сообщение об ошибке форматируются для аргументов (например, "<tt>bad argument #1</tt>"), не используйте эти функции для других значений стека.<br><br>
+Если условия проверки не выполняются, функции с названиями <tt>luaL_check*</tt> всегда вызывают ошибку.
+<h2>5.1 – <a name="5.1">Функции и типы</a></h2>
+Здесь перечислены все функции и типы из вспомогательной библиотеки в алфавитном порядке.
+<hr>
+<h3><a name="luaL_addchar"><tt>luaL_addchar</tt></a></h3>
+<span class="apii">[-?, +?, <em>e</em>]</span>
+<pre>void luaL_addchar (luaL_Buffer *B, char c);</pre>
+Добавляет байт <tt>c</tt> в буфер <tt>B</tt> (смотрите <a href="#luaL_Buffer"><tt>luaL_Buffer</tt></a>).
+<hr>
+<h3><a name="luaL_addlstring"><tt>luaL_addlstring</tt></a></h3>
+<span class="apii">[-?, +?, <em>e</em>]</span>
+<pre>void luaL_addlstring (luaL_Buffer *B,
+                      const char *s,
+                      size_t l);</pre>
+Добавляет в буфер <tt>B</tt> строку (длиной <tt>l</tt>), на которую указывает указатель <tt>s</tt> (смотрите <a href="#luaL_Buffer"><tt>luaL_Buffer</tt></a>). Строка может содержать встроенные символы нуля.
+<hr>
+<h3><a name="luaL_addsize"><tt>luaL_addsize</tt></a></h3>
+<span class="apii">[-?, +?, <em>e</em>]</span>
+<pre>void luaL_addsize (luaL_Buffer *B, size_t n);</pre>
+Добавляет в буфер <tt>B</tt> (смотрите <a href="#luaL_Buffer"><tt>luaL_Buffer</tt></a>) строку длиной <tt>n</tt> предварительно скопированную в буферную область (смотрите <a href="#luaL_prepbuffer"><tt>luaL_prepbuffer</tt></a>).
+<hr>
+<h3><a name="luaL_addstring"><tt>luaL_addstring</tt></a></h3>
+<span class="apii">[-?, +?, <em>e</em>]</span>
+<pre>void luaL_addstring (luaL_Buffer *B, const char *s);</pre>
+Добавляет в буфер <tt>B</tt> строку, заканчивающуюся нулевым символом, и указанную указателем <tt>s</tt> (смотрите <a href="#luaL_Buffer"><tt>luaL_Buffer</tt></a>).
+<hr>
+<h3><a name="luaL_addvalue"><tt>luaL_addvalue</tt></a></h3>
+<span class="apii">[-1, +?, <em>e</em>]</span>
+<pre>void luaL_addvalue (luaL_Buffer *B);</pre>
+Добавляет значение с верхушки стека в буфер <tt>B</tt> (смотрите <a href="#luaL_Buffer"><tt>luaL_Buffer</tt></a>). Значение, при этом, извлекается из стека.<br><br>
+Это единственная функция на строковых буферах, которая может (и должна) вызываться с дополнительным элементом на стеке, который и является значением добавляемым в буфер.
+<hr>
+<h3><a name="luaL_argcheck"><tt>luaL_argcheck</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>void luaL_argcheck (lua_State *L,
+                    int cond,
+                    int arg,
+                    const char *extramsg);</pre>
+Проверяет истинно ли условие <tt>cond</tt>. Если это не так, выдает ошибку со стандартным сообщением об ошибке (смотрите <a href="#luaL_argerror"><tt>luaL_argerror</tt></a>).
+<hr>
+<h3><a name="luaL_argerror"><tt>luaL_argerror</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>int luaL_argerror (lua_State *L,
+                   int arg,
+                   const char *extramsg);</pre>
+Вызывает ошибку, сообщающую о проблеме с аргументом <tt>arg</tt> функции на C, что вызвала её; использует стандартное сообщение, которое в качестве комментария включает <tt>extramsg</tt>:
+<pre>  bad argument #<em>arg</em> to '<em>funcname</em>' (<em>extramsg</em>)</pre>
+Данная функция никогда не возвращает значение.
+<hr>
+<h3><a name="luaL_Buffer"><tt>luaL_Buffer</tt></a></h3>
+<pre>typedef struct luaL_Buffer luaL_Buffer;</pre>
+Тип для <em>строкового буфера</em> (string buffer).<br><br>
+Строковый буфер позволяет C&nbsp;коду выстраивать строки Lua по частям.
+Порядок её использования следующий:
+<ul><li>Первоначально объявляется переменная <tt>b</tt> типа <a href="#luaL_Buffer"><tt>luaL_Buffer</tt></a>.</li>
+<li>Затем она инициализируется вызовом <tt>luaL_buffinit(L, &amp;b)</tt>.</li>
+<li>Далее добавляем части строки в буфер вызывая любую из функций <tt>luaL_add*</tt>.</li>
+<li>Заканчиваем вызовом <tt>luaL_pushresult(&amp;b)</tt>. Этот вызов оставляет завершенную строку на вершине стека.</li></ul>
+Если заранее известен полный размер результирующей строки, можно использовать буфер следующим образом:
+<ul><li>Вначале объявляем переменную <tt>b</tt> типа <a href="#luaL_Buffer"><tt>luaL_Buffer</tt></a>.</li>
+<li>Затем инициализируем её и предварительно выделяем место размером <tt>sz</tt> вызовом <tt>luaL_buffinitsize(L, &amp;b, sz)</tt>.</li>
+<li>Далее копируем строку в это выделенное пространство.</li>
+<li>Заканчиваем вызовом <tt>luaL_pushresultsize(&amp;b, sz)</tt>, где <tt>sz</tt> является полным размером результирующей строки, скопированной в данном месте.</li></ul>
+При обычной работе строковый буфер использует переменное количество слотов стека. Так что пока используется буфер, нельзя предположить где находится вершина стека.
+Можно использовать стек между последовательными вызовами операций с буфером, пока это использование сбалансировано; то есть, при вызове операции с буфером стек находится на том же уровне, где он был непосредственно после предыдущей операции над буфером.
+(Единственным исключением из этого правила является <a href="#luaL_addvalue"><tt>luaL_addvalue</tt></a>.)
+После вызова <a href="#luaL_pushresult"><tt>luaL_pushresult</tt></a> стек возвращается обратно на тот уровень, где он был при инициализации буфера, плюс финальная строка находится на его вершине.
+<hr>
+<h3><a name="luaL_buffinit"><tt>luaL_buffinit</tt></a></h3>
+<span class="apii">[-0, +0, –]</span>
+<pre>void luaL_buffinit (lua_State *L, luaL_Buffer *B);</pre>
+Инициализирует буфер <tt>B</tt>. Эта функция не выделяет никакого пространства; буфер должен быть объявлен как переменная (смотрите <a href="#luaL_Buffer"><tt>luaL_Buffer</tt></a>).
+<hr>
+<h3><a name="luaL_buffinitsize"><tt>luaL_buffinitsize</tt></a></h3>
+<span class="apii">[-?, +?, <em>e</em>]</span>
+<pre>char *luaL_buffinitsize (lua_State *L,
+                         luaL_Buffer *B,
+                         size_t sz);</pre>
+Эквивалентна (равноценна) последовательному вызову функций <a href="#luaL_buffinit"><tt>luaL_buffinit</tt></a>, <a href="#luaL_prepbuffsize"><tt>luaL_prepbuffsize</tt></a>.
+<hr>
+<h3><a name="luaL_callmeta"><tt>luaL_callmeta</tt></a></h3>
+<span class="apii">[-0, +(0|1), <em>e</em>]</span>
+<pre>
+int luaL_callmeta (lua_State *L,
+                   int obj,
+                   const char *e);</pre>
+Вызывает метаметод.<br><br>
+Если у объекта с индексом <tt>obj</tt> имеется метатаблица и в этой метатаблице есть поле <tt>e</tt>, эта функция вызывает это поле передавая объект в качестве своего единственного аргумента.
+В данном случае эта функция возвратит значение <b>true</b> и помещает в стек значение, возвращенное вызовом.
+Если метатаблицы или метаметода не существует, эта функция возвращает значение <b>false</b> (без помещения какого-либо значения в стек).
+<hr>
+<h3><a name="luaL_checkany"><tt>luaL_checkany</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>void luaL_checkany (lua_State *L, int arg);</pre>
+Проверяет, имеет ли функция аргумент какого-нибудь типа (включая <b>nil</b>) в позиции <tt>arg</tt>.
+<hr>
+<h3><a name="luaL_checkinteger"><tt>luaL_checkinteger</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>lua_Integer luaL_checkinteger (lua_State *L, int arg);</pre>
+Проверяет, является ли аргумент <tt>arg</tt> функции целым числом (или может быть конвертирован в целое число) и возвращает это целое число приведенное к типу <a href="api.htm#lua_Integer"><tt>lua_Integer</tt></a>.
+<hr>
+<h3><a name="luaL_checklstring"><tt>luaL_checklstring</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>const char *luaL_checklstring (lua_State *L,
+                               int arg,
+                               size_t *l);</pre>
+Проверяет, является ли аргумент <tt>arg</tt> функции строкой и возвращает эту строку; если <tt>l</tt> не является <tt>NULL</tt> заполняет <tt>*l</tt> длиной строки.<br><br>
+Эта функция для получения результата использует <a href="api.htm#lua_tolstring"><tt>lua_tolstring</tt></a>, так что здесь применимы все преобразования и предостережения этой функции.
+<hr>
+<h3><a name="luaL_checknumber"><tt>luaL_checknumber</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>lua_Number luaL_checknumber (lua_State *L, int arg);</pre>
+Проверяет, является ли аргумент <tt>arg</tt> функции числом и возвращает это число.
+<hr>
+<h3><a name="luaL_checkoption"><tt>luaL_checkoption</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>int luaL_checkoption (lua_State *L,
+                      int arg,
+                      const char *def,
+                      const char *const lst[]);</pre>
+Проверяет, является ли аргумент <tt>arg</tt> функции строкой и разыскивает эту строку в массиве <tt>lst</tt> (которая должна оканчиваться на <tt>NULL</tt>).
+Возвращает индекс элемента массива в котором была найдена строка. Вызывает ошибку, если аргумент не является строкой или данная строка не была найдена.<br><br>
+Если указатель <tt>def</tt> не является <tt>NULL</tt>, функция использует <tt>def</tt> как значение по умолчанию, когда нет аргумента <tt>arg</tt> или он является <b>nil</b>.<br><br>
+Это полезная функция для отображения строк в C&nbsp;перечислениях. (В Lua библиотеках обычным соглашением является использование строк вместо чисел для выбора опций.)
+<hr>
+<h3><a name="luaL_checkstack"><tt>luaL_checkstack</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>void luaL_checkstack (lua_State *L,
+                      int sz,
+                      const char *msg);</pre>
+Увеличивает размер стека до <tt>top + sz</tt> элементов и если не может увеличить этот размер, вызывает ошибку. <tt>msg</tt> - это дополнительный текст для вывода его в сообщении об ошибке (или значение <tt>NULL</tt>, когда дополнительный текст отсутствует).
+<hr>
+<h3><a name="luaL_checkstring"><tt>luaL_checkstring</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>const char *luaL_checkstring (lua_State *L, int arg);</pre>
+Проверяет, является ли аргумент <tt>arg</tt> функции строкой и возвращает эту строку.<br><br>
+Данная функция для получения своего результата использует <a href="api.htm#lua_tolstring"><tt>lua_tolstring</tt></a>, так что все преобразования и предостережения относительно этой функции применимы и здесь.
+<hr>
+<h3><a name="luaL_checktype"><tt>luaL_checktype</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>void luaL_checktype (lua_State *L, int arg, int t);</pre>
+Проверяет, имеет ли аргумент <tt>arg</tt> функции тип <tt>t</tt>.
+Чтобы узнать, как кодируется тип <tt>t</tt>, смотрите описание функции <a href="api.htm#lua_type"><tt>lua_type</tt></a>.
+<hr>
+<h3><a name="luaL_checkudata"><tt>luaL_checkudata</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>void *luaL_checkudata (lua_State *L,
+                       int arg,
+                       const char *tname);</pre>
+Проверяет, является ли аргумент <tt>arg</tt> функции пользовательскими данными типа <tt>tname</tt> (смотрите <a href="#luaL_newmetatable"><tt>luaL_newmetatable</tt></a>) и возвращает адрес этих <tt>userdata</tt> (смотрите <a href="api.htm#lua_touserdata"><tt>lua_touserdata</tt></a>).
+<hr>
+<h3><a name="luaL_checkversion"><tt>luaL_checkversion</tt></a></h3>
+<span class="apii">[-0, +0, –]</span>
+<pre>void luaL_checkversion (lua_State *L);</pre>
+Проверяет, используют ли одну и ту же версию Lua: ядро, выполняющее вызов, ядро, которое создало Lua состояние, и код, сделавший вызов.
+Также проверяет, используют ли одно и тоже адресное пространство: ядро, выполняющее вызов, и ядро, которое создало Lua-состояние.
+<hr>
+<h3><a name="luaL_dofile"><tt>luaL_dofile</tt></a></h3>
+<span class="apii">[-0, +?, <em>e</em>]</span>
+<pre>int luaL_dofile (lua_State *L, const char *filename);</pre>
+Загружает и запускает заданный файл. Данная функция определяется как следующий макрос:
+<pre>(luaL_loadfile(L, filename) || lua_pcall(L, 0, LUA_MULTRET, 0))</pre>
+Если нет ошибок, функция, возвращает <b>false</b>; в случае ошибок - возвращается <b>true</b>.
+<hr>
+<h3><a name="luaL_dostring"><tt>luaL_dostring</tt></a></h3>
+<span class="apii">[-0, +?, –]</span>
+<pre>int luaL_dostring (lua_State *L, const char *str);</pre>
+Загружает и запускает заданную строку. Функция определяется как следующий макрос:
+<pre>(luaL_loadstring(L, str) || lua_pcall(L, 0, LUA_MULTRET, 0))</pre>
+Если нет ошибок, функция, возвращает <b>false</b>; в случае ошибок - возвращается <b>true</b>.
+<hr>
+<h3><a name="luaL_error"><tt>luaL_error</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>int luaL_error (lua_State *L, const char *fmt, ...);</pre>
+Вызывает ошибку. Формат сообщения об ошибке задается <tt>fmt</tt> плюс любые дополнительные аргументы, следующие тем же правилам что и <a href="api.htm#lua_pushfstring"><tt>lua_pushfstring</tt></a>.
+Также она добавляет в начале сообщения (если эта информация доступна) имя файла и номер строки, где произошла ошибка.<br><br>
+Данная функция ничего и никогда не возвращает, но она является идиомой для использования в C&nbsp;функциях как <tt>return luaL_error(<em>args</em>)</tt>.
+<hr>
+<h3><a name="luaL_execresult"><tt>luaL_execresult</tt></a></h3>
+<span class="apii">[-0, +3, <em>e</em>]</span>
+<pre>int luaL_execresult (lua_State *L, int stat);</pre>
+Данная функция производит возврат значений для функций, связанных с процессом, в стандартной библиотеке (<a href="standardLibraries.htm#pdf-os.execute"><tt>os.execute</tt></a> и <a href="standardLibraries.htm#pdf-io.close"><tt>io.close</tt></a>).
+<hr>
+<h3><a name="luaL_fileresult"><tt>luaL_fileresult</tt></a></h3>
+<span class="apii">[-0, +(1|3), <em>e</em>]</span>
+<pre>int luaL_fileresult (lua_State *L,
+                     int stat,
+                     const char *fname);</pre>
+Данная функция производит возврат значений для функций, связанных с файлом, в стандартной библиотеке (<a href="standardLibraries.htm#pdf-io.open"><tt>io.open</tt></a>, <a href="standardLibraries.htm#pdf-os.rename"><tt>os.rename</tt></a>, <a href="standardLibraries.htm#pdf-file:seek"><tt>file:seek</tt></a>, и т.д.).
+<hr>
+<h3><a name="luaL_getmetafield"><tt>luaL_getmetafield</tt></a></h3>
+<span class="apii">[-0, +(0|1), <em>e</em>]</span>
+<pre>int luaL_getmetafield (lua_State *L,
+                       int obj,
+                       const char *e);</pre>
+Помещает в стек поле <tt>e</tt> из метатаблицы объекта с индексом <tt>obj</tt> и возвращает тип размещенного значения.
+Если объект не имеет метатаблицы или в метатаблице нет такого поля, функция ничего в стек не записывает и возвращает <tt>LUA_TNIL</tt>.
+<hr>
+<h3><a name="luaL_getmetatable"><tt>luaL_getmetatable</tt></a></h3>
+<span class="apii">[-0, +1, –]</span>
+<pre>int luaL_getmetatable (lua_State *L,
+                       const char *tname);</pre>
+Помещает в стек метатаблицу, связанную в реестре с именем <tt>tname</tt> (смотрите <a href="#luaL_newmetatable"><tt>luaL_newmetatable</tt></a>) (или <b>nil</b>, если не существует метатаблицы, связанной с этим именем).
+Возвращает тип записанного значения.
+<hr>
+<h3><a name="luaL_getsubtable"><tt>luaL_getsubtable</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>int luaL_getsubtable (lua_State *L,
+                      int idx,
+                      const char *fname);</pre>
+Убеждается что значение <tt>t[fname]</tt>, где <tt>t</tt> является значением с индексом <tt>idx</tt>, является таблицей, и помещает эту таблицу в стек.
+Возвращает <b>true</b>, если функция находит там предыдущую таблицу и <b>false</b>, если она создает новую таблицу.
+<hr>
+<h3><a name="luaL_gsub"><tt>luaL_gsub</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>const char *luaL_gsub (lua_State *L,
+                       const char *s,
+                       const char *p,
+                       const char *r);</pre>
+Создает копию строки <tt>s</tt> заменяя любое вхождение строки <tt>p</tt> строкой <tt>r</tt>. Помещает результирующую строку в стек и возвращает её.
+<hr>
+<h3><a name="luaL_len"><tt>luaL_len</tt></a></h3>
+<span class="apii">[-0, +0, <em>e</em>]</span>
+<pre>lua_Integer luaL_len (lua_State *L, int index);</pre>
+Возвращает "длину" значения по заданному индексу как число; это эквивалент операции '<tt>#</tt>' в Lua (смотрите <a href="language.htm#3.4.7">&#167;3.4.7</a>).
+Вызывает ошибку если результат операции не является целым числом. (Такой случай может произойти только через метаметоды.)
+<hr>
+<h3><a name="luaL_loadbuffer"><tt>luaL_loadbuffer</tt></a></h3>
+<span class="apii">[-0, +1, –]</span>
+<pre>int luaL_loadbuffer (lua_State *L,
+                     const char *buff,
+                     size_t sz,
+                     const char *name);</pre>
+Функция эквивалентна <a href="#luaL_loadbufferx"><tt>luaL_loadbufferx</tt></a> с аргументом <tt>mode</tt> равным <tt>NULL</tt>.
+<hr>
+<h3><a name="luaL_loadbufferx"><tt>luaL_loadbufferx</tt></a></h3>
+<span class="apii">[-0, +1, –]</span>
+<pre>int luaL_loadbufferx (lua_State *L,
+                      const char *buff,
+                      size_t sz,
+                      const char *name,
+                      const char *mode);</pre>
+Загружает буфер как блок (chunk) Lua. Эта функция использует <a href="api.htm#lua_load"><tt>lua_load</tt></a> для загрузки блока в буфер, с указателем <tt>buff</tt> с размером <tt>sz</tt>.<br><br>
+Данная функция возвращает те же самые результаты, что и  <a href="api.htm#lua_load"><tt>lua_load</tt></a>. Аргумент <tt>name</tt> - это имя блока, используемого для отладочной информации и сообщений об ошибках.
+Строка <tt>mode</tt> работает как в функции <a href="api.htm#lua_load"><tt>lua_load</tt></a>.
+<hr>
+<h3><a name="luaL_loadfile"><tt>luaL_loadfile</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>int luaL_loadfile (lua_State *L,
+                   const char *filename);</pre>
+Функция эквивалентна <a href="#luaL_loadfilex"><tt>luaL_loadfilex</tt></a> с аргументом <tt>mode</tt> равным <tt>NULL</tt>.
+<hr>
+<h3><a name="luaL_loadfilex"><tt>luaL_loadfilex</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>int luaL_loadfilex (lua_State *L,
+                    const char *filename,
+                    const char *mode);</pre>
+Загружает файл как блок (chunk) Lua. Данная функция использует <a href="api.htm#lua_load"><tt>lua_load</tt></a> для загрузки блока в файле по имени <tt>filename</tt>.
+Если значением аргумента <tt>filename</tt> является <tt>NULL</tt>, то функция загружает из стандартного ввода. Первая строка в файле игнорируется, если начинается с символа <tt>#</tt>.<br><br>
+Строковый аргумент <tt>mode</tt> работает как в функции <a href="api.htm#lua_load"><tt>lua_load</tt></a>.<br><br>
+Эта функция возвращает те же результаты, что и <a href="api.htm#lua_load"><tt>lua_load</tt></a>, но имеет дополнительный код ошибки <a name="pdf-LUA_ERRFILE"><tt>LUA_ERRFILE</tt></a>, на случай, если она не может открыть/считать файл или файл имеет неправильный режим.<br><br>
+Как и <a href="api.htm#lua_load"><tt>lua_load</tt></a>, данная функция только загружает блок, но не запускает его.
+<hr>
+<h3><a name="luaL_loadstring"><tt>luaL_loadstring</tt></a></h3>
+<span class="apii">[-0, +1, –]</span>
+<pre>int luaL_loadstring (lua_State *L, const char *s);</pre>
+Запускает строку как блок (chunk) Lua. Эта функция использует <a href="api.htm#lua_load"><tt>lua_load</tt></a> для загрузки блока в строке <tt>s</tt>, заканчивающейся символом нуля.<br><br>
+Эта функция возвращает те же результаты, что и <a href="api.htm#lua_load"><tt>lua_load</tt></a>.<br><br>
+Также как <a href="api.htm#lua_load"><tt>lua_load</tt></a>, данная функция только загружает блок, но не запускает его.
+<hr>
+<h3><a name="luaL_newlib"><tt>luaL_newlib</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>void luaL_newlib (lua_State *L, const luaL_Reg l[]);</pre>
+Функция создает новую таблицу и регистрирует там функции в списке <tt>l</tt>.<br><br>
+Она реализуется как следующий макрос:
+<pre>(luaL_newlibtable(L,l), luaL_setfuncs(L,l,0))</pre>
+Массив <tt>l</tt> должен быть на самом деле массивом, а не указателем на него.
+<hr>
+<h3><a name="luaL_newlibtable"><tt>luaL_newlibtable</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>void luaL_newlibtable (lua_State *L,
+                       const luaL_Reg l[]);</pre>
+Функция создает новую таблицу с размером, оптимизированным под хранение всех записей массива <tt>l</tt> (но на самом деле не хранит их).
+Она предназначена для совместной работы с функцией <a href="#luaL_setfuncs"><tt>luaL_setfuncs</tt></a> (смотрите <a href="#luaL_newlib"><tt>luaL_newlib</tt></a>).<br><br>
+Функция реализована как макрос. Массив <tt>l</tt> должен быть на самом деле архивом, а не указателем на него.
+<hr>
+<h3><a name="luaL_newmetatable"><tt>luaL_newmetatable</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>int luaL_newmetatable (lua_State *L, const char *tname);</pre>
+Если в реестре уже имеется ключ <tt>tname</tt>, возвращается 0.
+В противном случае, создает новую таблицу, которая будет использоваться как метатаблица для userdata, добавляет в эту новую таблицу пару <tt>__name = tname</tt>, дополняет реестр парой <tt>[tname] = new table</tt> и возвращает 1.
+(Запись <tt>__name</tt> используется некоторыми функциями, сообщающими об ошибках.)<br><br>
+В обоих случаях в стек помещается конечное значение, связанное в реестре с <tt>tname</tt>.
+<hr>
+<h3><a name="luaL_newstate"><tt>luaL_newstate</tt></a></h3>
+<span class="apii">[-0, +0, –]</span>
+<pre>lua_State *luaL_newstate (void);</pre>
+Функция создает новое Lua состояние.
+Она вызывает <a href="api.htm#lua_newstate"><tt>lua_newstate</tt></a> с функцией выделения памяти на основе стандартной функции&nbsp;C <tt>realloc</tt> и затем устанавливает "тревожную" (panic) функцию (смотрите <a href="api.htm#4.6">&#167;4.6</a>), которая печатает сообщение об ошибке к стандартному выводу ошибки в случае фатальных (неустранимых) ошибок.<br><br>
+Возвращает новое состояние или значение <tt>NULL</tt>, если есть ошибка выделения памяти.
+<hr>
+<h3><a name="luaL_openlibs"><tt>luaL_openlibs</tt></a></h3>
+<span class="apii">[-0, +0, <em>e</em>]</span>
+<pre>void luaL_openlibs (lua_State *L);</pre>
+Функция, в заданном состоянии Lua, открывает все стандартные библиотеки.
+<hr>
+<h3><a name="luaL_optinteger"><tt>luaL_optinteger</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>lua_Integer luaL_optinteger (lua_State *L,
+                             int arg,
+                             lua_Integer d);</pre>
+Если аргумент <tt>arg</tt> функции является целым числом (или возможно преобразование его в целое число), возвращает это целое число.
+Если данный аргумент отсутствует или является <b>nil</b>, возвращается аргумент <tt>d</tt>. В других случаях вызывает ошибку.
+<hr>
+<h3><a name="luaL_optlstring"><tt>luaL_optlstring</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>const char *luaL_optlstring (lua_State *L,
+                             int arg,
+                             const char *d,
+                             size_t *l);</pre>
+Если аргумент <tt>arg</tt> функции является строкой, возвращается эта строка. Если данный аргумент отсутствует или является <b>nil</b>, возвращается аргумент <tt>d</tt>. В других случаях вызывает ошибку.<br><br>
+Если аргумент <tt>l</tt> не является <tt>NULL</tt>, заполняет позицию указанную <tt>*l</tt>, длиной получившейся строки.
+<hr>
+<h3><a name="luaL_optnumber"><tt>luaL_optnumber</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>lua_Number luaL_optnumber (lua_State *L,
+                           int arg,
+                           lua_Number d);</pre>
+Если аргумент <tt>arg</tt> функции является числом, возвращается это число. Если данный аргумент отсутствует или является <b>nil</b>, возвращается аргумент <tt>d</tt>. В других случаях вызывает ошибку.
+<hr>
+<h3><a name="luaL_optstring"><tt>luaL_optstring</tt></a></h3>
+<span class="apii">[-0, +0, <em>v</em>]</span>
+<pre>const char *luaL_optstring (lua_State *L,
+                            int arg,
+                            const char *d);</pre>
+Если аргумент <tt>arg</tt> функции является строкой, возвращается эта строка. Если данный аргумент отсутствует или является <b>nil</b>, возвращается аргумент <tt>d</tt>. В других случаях вызывает ошибку.
+<hr>
+<h3><a name="luaL_prepbuffer"><tt>luaL_prepbuffer</tt></a></h3>
+<span class="apii">[-?, +?, <em>e</em>]</span>
+<pre>char *luaL_prepbuffer (luaL_Buffer *B);</pre>
+Функция эквивалентна функции <a href="#luaL_prepbuffsize"><tt>luaL_prepbuffsize</tt></a> с предопределенным размером <a name="pdf-LUAL_BUFFERSIZE"><tt>LUAL_BUFFERSIZE</tt></a>.
+<hr>
+<h3><a name="luaL_prepbuffsize"><tt>luaL_prepbuffsize</tt></a></h3>
+<span class="apii">[-?, +?, <em>e</em>]</span>
+<pre>char *luaL_prepbuffsize (luaL_Buffer *B, size_t sz);</pre>
+Возвращает адрес на место в памяти размером <tt>sz</tt>, где можно скопировать строку для добавления в буфер <tt>B</tt> (смотрите <a href="#luaL_Buffer"><tt>luaL_Buffer</tt></a>).
+После копирования строки в этом месте следует вызвать функцию <a href="#luaL_addsize"><tt>luaL_addsize</tt></a> с размером строки, чтобы на самом деле добавить её в буфер.
+<hr>
+<h3><a name="luaL_pushresult"><tt>luaL_pushresult</tt></a></h3>
+<span class="apii">[-?, +1, <em>e</em>]</span>
+<pre>void luaL_pushresult (luaL_Buffer *B);</pre>
+Завершает использование буфера <tt>B</tt> оставляя последнюю строку на вершине стека.
+<hr>
+<h3><a name="luaL_pushresultsize"><tt>luaL_pushresultsize</tt></a></h3>
+<span class="apii">[-?, +1, <em>e</em>]</span>
+<pre>void luaL_pushresultsize (luaL_Buffer *B, size_t sz);</pre>
+Функция эквивалентна последовательному применению <a href="#luaL_addsize"><tt>luaL_addsize</tt></a>, <a href="#luaL_pushresult"><tt>luaL_pushresult</tt></a>.
+<hr>
+<h3><a name="luaL_ref"><tt>luaL_ref</tt></a></h3>
+<span class="apii">[-1, +0, <em>e</em>]</span>
+<pre>int luaL_ref (lua_State *L, int t);</pre>
+Создает и возвращает <em>ссылку</em>, на элемент таблицы с индексом <tt>t</tt>, для объекта на вершине стека (и выталкивает объект из стека).<br><br>
+Ссылкой является уникальный целочисленный ключ.
+До тех пор, пока в таблицу <tt>t</tt> не добавлять вручную целочисленные ключи, <a href="#luaL_ref"><tt>luaL_ref</tt></a> гарантирует уникальность ключа, им возвращаемого.
+Получить объект, связанный со ссылкой <tt>r</tt> можно вызовом <tt>lua_rawgeti(L, t, r)</tt>.
+Функция <a href="#luaL_unref"><tt>luaL_unref</tt></a> высвобождает ссылку и связанный с ней объект.<br><br>
+Если объект на вершине стека является <b>nil</b>, <a href="#luaL_ref"><tt>luaL_ref</tt></a> возвращает константу <a name="pdf-LUA_REFNIL"><tt>LUA_REFNIL</tt></a>.
+Константа <a name="pdf-LUA_NOREF"><tt>LUA_NOREF</tt></a> гарантированно будет отличаться от каких-либо ссылок, возвращаемых <a href="#luaL_ref"><tt>luaL_ref</tt></a>.
+<hr>
+<h3><a name="luaL_Reg"><tt>luaL_Reg</tt></a></h3>
+<pre>typedef struct luaL_Reg {
+                          const char *name;
+                          lua_CFunction func;
+                        } luaL_Reg;</pre>
+Тип для массивов функций, регистрируемых функцией <a href="#luaL_setfuncs"><tt>luaL_setfuncs</tt></a>. <tt>name</tt> - это имя функции, а <tt>func</tt> является указателем на функцию.
+Любой массив из <a href="#luaL_Reg"><tt>luaL_Reg</tt></a> должен оканчиваться охранной записью, в которой оба, и <tt>name</tt> и <tt>func</tt> являются <tt>NULL</tt>.
+<hr>
+<h3><a name="luaL_requiref"><tt>luaL_requiref</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>void luaL_requiref (lua_State *L,
+                    const char *modname,
+                    lua_CFunction openf,
+                    int glb);</pre>
+Если <tt>modname</tt> уже не представлена в <a href="standardLibraries.htm#pdf-package.loaded"><tt>package.loaded</tt></a>, то данная функция вызывает функцию <tt>openf</tt> со строкой <tt>modname</tt>
+в качестве аргумента и устанавливает результат вызова в <tt>package.loaded[modname]</tt>, как если бы эта функция была вызвана через <a href="standardLibraries.htm#pdf-require"><tt>require</tt></a>.<br><br>
+Если <tt>glb</tt> истинно, модуль также сохраняется в глобальной <tt>modname</tt>.<br><br>
+Оставляет копию модуля в стеке.
+<hr>
+<h3><a name="luaL_setfuncs"><tt>luaL_setfuncs</tt></a></h3>
+<span class="apii">[-nup, +0, <em>e</em>]</span>
+<pre>void luaL_setfuncs (lua_State *L,
+                    const luaL_Reg *l,
+                    int nup);</pre>
+Регистрирует все функции в массиве <tt>l</tt> (смотрите <a href="#luaL_Reg"><tt>luaL_Reg</tt></a>) в таблице на вершине стека (ниже дополнительных <a class=popupspot href="JavaScript:hhctrl.TextPopup('т.е. они не являются ни глобальными переменными, ни локальными.\r\n(По историческим причинам для обозначения нелокальных переменных в Lua также используется термин upvalue.)','Arial,9',10,10,0xffffff,0xd69967)">нелокальных переменных (upvalues)</a>, смотрите далее).<br><br>
+Когда <tt>nup</tt> не является нулем, все функции создают совместно используемые нелокальные переменные <tt>nup</tt>, которые могут быть предварительно помещены в стек на вершине библиотечной таблицы.
+После регистрации эти значения извлекаются из стека.
+<hr>
+<h3><a name="luaL_setmetatable"><tt>luaL_setmetatable</tt></a></h3>
+<span class="apii">[-0, +0, –]</span>
+<pre>void luaL_setmetatable (lua_State *L,
+                        const char *tname);</pre>
+Устанавливает метатаблицу объекта, находящегося на вершине стека, как метатаблицу, связанную с именем <tt>tname</tt> в реестре (смотрите <a href="#luaL_newmetatable"><tt>luaL_newmetatable</tt></a>).
+<hr>
+<h3><a name="luaL_Stream"><tt>luaL_Stream</tt></a></h3>
+<pre>typedef struct luaL_Stream {
+                             FILE *f;
+                             lua_CFunction closef;
+                           } luaL_Stream;</pre>
+Стандартное представление для дескрипторов (handle) файла, которые используются стандартной библиотекой ввода/вывода (I/O).<br><br>
+Дескриптор файла реализован в виде полноценного объекта userdata, с метатаблицей, называемой <tt>LUA_FILEHANDLE</tt> (где <tt>LUA_FILEHANDLE</tt> - это макрос с фактическим именем метатаблицы).
+Метатаблица создается библиотекой ввода/вывода (I/O) (смотрите <a href="#luaL_newmetatable"><tt>luaL_newmetatable</tt></a>).<br><br>
+Эти userdata должны начинаться со структуры <tt>luaL_Stream</tt>; они могут содержать другие данные после этой начальной структуры.
+Поле <tt>f</tt> указывает на соответствующий C поток (или он может быть равен <tt>NULL</tt>, чтобы показать на не полностью созданный дескриптор).
+Поле <tt>closef</tt> указывает на функцию Lua, которая будет вызываться для завершения потока, когда дескриптор будет закрыт или собран (сборщиком мусора);
+эта функция принимает дескриптор файла в качестве своего единственного аргумента и должна возвратить либо <b>true</b> (в случае успешного выполнения) либо <b>nil</b> плюс сообщение об ошибке (в случае ошибки).
+После того, как Lua вызовет это поле, значение поля изменяется на <tt>NULL</tt> чтобы сигнализировать о закрытии дескриптора.
+<hr>
+<h3><a name="luaL_testudata"><tt>luaL_testudata</tt></a></h3>
+<span class="apii">[-0, +0, <em>e</em>]</span>
+<pre>void *luaL_testudata (lua_State *L,
+                      int arg,
+                      const char *tname);</pre>
+Данная функция работает как <a href="#luaL_checkudata"><tt>luaL_checkudata</tt></a>, за исключением того, что при неудачах проверки она возвращает <tt>NULL</tt> вместо вызова ошибки.
+<hr>
+<h3><a name="luaL_tolstring"><tt>luaL_tolstring</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>const char *luaL_tolstring (lua_State *L,
+                            int idx,
+                            size_t *len);</pre>
+Конвертирует любое Lua значение по заданному индексу в C&nbsp;строку в подходящем формате. Получившаяся строка помещается в стек, а также возвращается функцией.
+Если аргумент <tt>len</tt> не является <tt>NULL</tt>, функция также устанавливает <tt>*len</tt> с длиной строки.<br><br>
+Если значение имеет метатаблицу с полем <tt>"__tostring"</tt>, то функция <tt>luaL_tolstring</tt> вызывает соответствующий метаметод со значением в качестве аргумента и использует результат вызова как свой результат.
+<hr>
+<h3><a name="luaL_traceback"><tt>luaL_traceback</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>void luaL_traceback (lua_State *L,
+                     lua_State *L1,
+                     const char *msg,
+                     int level);</pre>
+Функция создает и помещает в стек <a class=popupspot href="JavaScript:hhctrl.TextPopup('отслеживание (например, причины ошибки)\r\nв направлении от результата к источнику','Arial,9',10,10,0xffffff,0xd69967)">отслеживание (traceback)</a> стека <tt>L1</tt>.
+Если <tt>msg</tt> не является <tt>NULL</tt>, он добавляется к началу отслеживания. Параметр <tt>level</tt> указывает, на каком уровне начинать отслеживание стека.
+<hr>
+<h3><a name="luaL_typename"><tt>luaL_typename</tt></a></h3>
+<span class="apii">[-0, +0, –]</span>
+<pre>const char *luaL_typename (lua_State *L, int index);</pre>
+Возвращает название типа значения по заданному индексу.
+<hr>
+<h3><a name="luaL_unref"><tt>luaL_unref</tt></a></h3>
+<span class="apii">[-0, +0, –]</span>
+<pre>void luaL_unref (lua_State *L, int t, int ref);</pre>
+Функция высвобождает ссылку <tt>ref</tt> на объект таблицы по индексу <tt>t</tt> (смотрите <a href="#luaL_ref"><tt>luaL_ref</tt></a>).
+Запись удаляется из таблицы, так что объект, на который была ссылка, может буть собран сборщиком мусора. Ссылка <tt>ref</tt> также освобождается для последующего использования.<br><br>
+Если <tt>ref</tt> является <a href="#pdf-LUA_NOREF"><tt>LUA_NOREF</tt></a> или <a href="#pdf-LUA_REFNIL"><tt>LUA_REFNIL</tt></a>, функция <a href="#luaL_unref"><tt>luaL_unref</tt></a> ничего не делает.
+<hr>
+<h3><a name="luaL_where"><tt>luaL_where</tt></a></h3>
+<span class="apii">[-0, +1, <em>e</em>]</span>
+<pre>void luaL_where (lua_State *L, int lvl);</pre>
+Помещает в стек строку, определяющую текущее положение управления уровнем <tt>lvl</tt> в вызове стека.
+Обычно эта строка имеет следующий формат:
+<pre><em>chunkname</em>:<em>currentline</em>:</pre>
+Уровень&nbsp;0 - это выполняемая функция, уровень&nbsp;1 - это функция, которая вызвала выполняемую функцию, и т.д.<br><br>
+Данная функция используется для построения префикса сообщений об ошибках.
+<br><br>
+</body></html>
